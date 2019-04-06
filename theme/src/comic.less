@@ -1,0 +1,160 @@
+/*!
+ * Stylesheet comic for oophp course.
+ *
+ * This stylesheet is for the oophp course.
+ */
+
+ /**
+  * Normalize and reset the style.
+  */
+ @import "normalize.css/normalize.less";
+
+
+
+ /**
+  * Font Awesome.
+  */
+ @import "@fortawesome/fontawesome-free/less/fontawesome.less";
+ @import "@fortawesome/fontawesome-free/less/solid.less";
+ @import "@fortawesome/fontawesome-free/less/brands.less";
+
+
+
+/**
+ * Internal self contained modules, save in directory module/.
+ */
+
+
+
+
+/**
+ * A responsive menu.
+ */
+@import "@desinax/responsive-menu/less/responsive-menu.less";
+// @import "@desinax/responsive-menu/less/media-queries.less";
+
+
+
+/**
+ * Import the typographic grid.
+ */
+@import "@desinax/typographic-grid/less/typography-font-families.less";
+@import "@desinax/typographic-grid/less/typography-defaults.less";
+
+
+
+// Show the grid
+
+.vgrid .inner-wrap {
+    @gridImage: "../img/grid_24x30x10-nomargin.png";
+    //@gridImage: "../img/grid_12x60x20-nomargin.png";
+    #desinax-vgrid.showGrid(@gridImage, 1100px);
+
+    &.inner-wrap-header {
+        #desinax-vgrid.showGrid(@gridImage);
+    }
+}
+
+.hgrid .inner-wrap {
+    @gridImage: "../img/magic-number-@{magicNumber}.png";
+    #desinax-hgrid.showGrid(@gridImage);
+}
+
+/**
+ * Base style to affect HTML elements on a general scale.
+ */
+// @import "base/base.less";
+// @import "base/base_kmom10-comic.less";
+
+
+
+/**
+ * Import the vertical grid.
+ */
+@import "@desinax/vertical-grid/less/grid.less";
+
+
+// Default grid, change to fit your requirements.
+// @columnWidth:   30;
+// @gutterWidth:   10;
+// @columns:       24;
+// @gridType:      "float"; // "flex"
+
+
+
+.row {
+    #desinax-vgrid.row();
+
+    // background-color: #0f0;
+    margin-bottom: 12px;
+}
+
+
+/**
+ * Layout style for general structure of header, navbar, main, footer
+ * and other regions of the page including route specific styles.
+ */
+
+@import "layout/comic.less";
+
+@import "layout/regions.less";     // To add style for ?regions
+
+
+
+/**
+ * Figure and figcaption for images and other media using figure/figcaption
+ */
+@import "src/@desinax/figure/less/asciinema.less";
+@import "src/@desinax/figure/less/codepen.less";
+@import "src/@desinax/figure/less/figure.less";
+
+
+
+figure.figure {
+    @maxContentWidth: 960px;
+    #desinax-figure.figure(@maxContentWidth);
+}
+
+
+// Enable style from the module and optinally add customized layout
+figure.figure {
+    #desinax-figure.figure();
+}
+
+
+figure.asciinema {
+    &:extend(figure.figure);
+    #desinax-figure.asciinema();
+}
+
+
+figure.codepen,
+figure.figure-codepen {
+    &:extend(figure.figure);
+    #desinax-figure.codepen();
+}
+
+
+
+
+
+/**
+ * A responsive menu.
+ */
+@import "@desinax/responsive-menu/less/responsive-menu.less";
+// @import "@desinax/responsive-menu/less/media-queries.less";
+
+
+/**
+ * My own settings, not currently in their own module.
+ */
+ @bgColorHtml: #fff;
+ @bgColorBody: #fff;
+
+ @magicNumber:  24px;  // 22px
+ @fontSizeBody: 16px;
+
+ // Default font-families
+ @fontFamilyHeadings: "serif";
+ @fontFamilyBody:     "sans-serif";
+ @fontFamilyCode:     "monospace";

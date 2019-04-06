@@ -4,7 +4,7 @@ views:
         region: sidebar-right
         template: anax/v2/block/default
         data:
-            meta: 
+            meta:
                 type: single
                 route: block/om-kursrepo
 
@@ -12,17 +12,12 @@ views:
         region: sidebar-right
         template: anax/v2/block/default
         data:
-            meta: 
+            meta:
                 type: single
                 route: block/om-redovisa
 ---
 Om
 =========================
+Detta är min redovisningssida för kursen objektorienterad programmering i PHP 7.5hp, a.k.a oophp, vid BTH. På denna webbplats kommer jag att publicera mina redovisningar för respektive kursmoment.
 
-Detta innehåll är skrivet i markdown och du hittar innehållet i filen `content/om.md`.
-
-Skriv några kloka ord om kursen?
-
-Lägg till en fin och representativ bild för kursen, enligt ditt eget val.
-
-[FIGURE src=image/car.png?w=740&filter=grayscale&f1=colorize,0,30,0,0 caption="En fin bil som demobild, lite oklart hur den är representativ, men ändå..."]
+[FIGURE src=image/php_om.png?w=740."]

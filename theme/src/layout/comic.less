@@ -1,0 +1,423 @@
+/**
+ * Base style to affect HTML elements on a general scale.
+ */
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:600');
+@import url('https://fonts.googleapis.com/css?family=Special+Elite');
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
+@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+@import url('https://fonts.googleapis.com/css?family=Caveat');
+@import url('https://fonts.googleapis.com/css?family=Mukta');
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+/**
+ * Layout style for general structure of header, navbar, main, footer
+ * and other regions of the page including route specific styles.
+ */
+
+img {
+    max-width: 100%;
+}
+
+h1 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 36px;
+    text-transform: uppercase;
+    line-height: 1.15em;
+    padding-bottom: 4px;
+}
+
+h1 a {
+    color: inherit;
+}
+
+h2 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 24px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    line-height: 1.15em;
+}
+
+figure.figure.right {
+    padding-left: 50px;
+}
+
+figcaption {
+    padding-left: 50px;
+}
+
+.row {
+    #desinax-vgrid.row();
+    max-width: 100%;
+    margin-bottom: 0;
+}
+
+.region-header-col-1 {
+    #desinax-vgrid.column(5);
+    #desinax-vgrid.push(1);
+}
+
+.region-header-col-2 {
+     #desinax-vgrid.column(23);
+     #desinax-vgrid.push(1);
+}
+
+.region-header-col-3 {
+    #desinax-vgrid.column(3);
+    display: none;
+}
+
+.site-logo,
+.site-logo-text-icon {
+     display: none;
+}
+
+.site-logo-text {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 72px;
+    white-space: nowrap;
+}
+
+.site-logo-text a {
+    color: #333;
+    text-decoration: none;
+}
+
+.my-navbar {
+    display: inline;
+    // float: right;
+}
+
+.my-navbar li {
+    font-family: 'Luckiest Guy', sans-serif;
+    font-size: 24px;
+}
+
+.my-navbar li a {
+    color: #333;
+    text-decoration: none;
+}
+
+.rm-desktop ul li {
+    background-color: #ffffff;
+    padding-top: 0;
+}
+
+#rm-menu {
+    background-color: #70a492;
+}
+
+#rm-menu-button.rm-clicked {
+    color:  #f47c23;
+}
+
+.rm-mobile li {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 24px;
+    text-align: left;
+    padding-left: 100px;
+    border: 2px;
+}
+
+.region-flash {
+    #desinax-vgrid.column(@columns - 2);
+    #desinax-vgrid.push(1);
+    background-image: url("../img/comic-flashny.png");
+    margin-bottom: 24px;
+    max-width: 1300px;
+}
+
+// @keyframes rockroll {
+//     0% {transform: rotate(3deg);}
+//     10% {transform: rotate(-6deg);}
+//     20% {transform: rotate(6deg);}
+//     30% {transform: rotate(-6deg);}
+//     40% {transform: rotate(6deg);}
+//     50% {transform: rotate(-6deg);}
+//     60% {transform: rotate(6deg);}
+//     70% {transform: rotate(-6deg);}
+//     80% {transform: rotate(6deg);}
+//     90% {transform: rotate(-6deg);}
+//     100% {transform: rotate(6deg);}
+// }
+
+.my-navbar li a:hover {
+    // animation-name: rockroll;
+    animation-duration: 2s;
+    text-decoration: none;
+}
+
+.my-navbar li a:active {
+    // animation-name: rockroll;
+    animation-duration: 2s;
+}
+
+.webmaker {
+    font-family: 'Special Elite', cursive;
+    text-align: center;
+    font-size: 0;
+    padding-top: 190px;
+    word-break: break-all;
+}
+
+.linktome a {
+    font-family: 'Special Elite', cursive;
+    text-align: center;
+    font-size: 0px;
+    word-break: break-all;
+}
+
+.linktome a:hover {
+    color: #ffccbe;
+    text-decoration: none;
+}
+
+.simplicity {
+    font-family: 'Special Elite', cursive;
+    text-align: center;
+    font-size: 0px;
+    padding-top: 190px;
+    word-break: break-all;
+}
+
+.taste {
+    font-family: 'Special Elite', cursive;
+    text-align: center;
+    font-size: 0px;
+    color: #58a327;
+    padding-top: 190px;
+    word-break: break-all;
+}
+
+.region-main {
+    #desinax-vgrid.column(21);
+    #desinax-vgrid.push(1);
+    font-family: 'Mukta', sans-serif;
+    font-size: 18px;
+    line-height: 32px;
+    padding-left: 24px;
+    padding-top: 12px;
+}
+
+.region-main.has-sidebar-right {
+    #desinax-vgrid.column(9);
+    #desinax-vgrid.push(1);
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    line-height: 2em;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 12px;
+    border: solid #333 1px;
+    box-shadow: 8px 16px 2px #f47c23;
+}
+
+.region-sidebar-right {
+    #desinax-vgrid.column(9);
+    #desinax-vgrid.push(1);
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    line-height: 2em;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 12px;
+    border: solid #333 1px;
+    box-shadow: 8px 16px 2px #70a492;
+}
+
+.leftside {
+    font-family: 'Caveat', cursive;
+    color: #333;
+    font-size: 20px;
+    line-height: 24px;
+    padding: 0 20px 20px 0;
+}
+
+.breadcrumb-list ul {
+    font-family: 'Luckiest Guy', sans-serif;
+    font-size: 16px;
+}
+
+.breadcrumb-list ul li a {
+    color: #333;
+}
+
+.breadcrumb-list ul li a:hover {
+    animation-name: rockroll;
+    animation-duration: 2s;
+}
+
+.region-main.has-sidebar-left.has-sidebar-right {
+    #desinax-vgrid.column(12);
+    #desinax-vgrid.push(1);
+    font-family: 'Mukta', sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    box-shadow: 8px 16px 2px #70a492;
+}
+
+.region-sidebar-right.has-sidebar-left {
+    #desinax-vgrid.column(6);
+    #desinax-vgrid.push(1);
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    border: solid #333 1px;
+    box-shadow: 8px 16px 2px #f47c23;
+}
+
+.region-sidebar-right.has-sidebar-left a {
+    color: #333;
+    list-style-type: none;
+}
+
+.region-sidebar-left {
+    #desinax-vgrid.column(6);
+    #desinax-vgrid.push(1);
+    border: solid #333 1px;
+    padding-left: 12px;
+    box-shadow: 8px 16px 2px #70a492;
+}
+
+.region-main.has-sidebar-left {
+    #desinax-vgrid.column(15);
+    #desinax-vgrid.push(1);
+    float: left;
+    font-family: 'Mukta', sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    color: #333;
+}
+
+.region-sidebar-left.has-sidebar-right {
+    #desinax-vgrid.column(1);
+    border: 0;
+    box-shadow: 0 0 0;
+}
+
+article.article.blog h2 {
+    font-family: 'Luckiest Guy', sans-serif;
+    font-size: 36px;
+}
+
+article.article.blog p {
+    font-family: 'Caveat', cursive;
+    font-size: 28px;
+}
+
+.readmore a {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: #333;
+}
+
+.next-previous a {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #333;
+}
+
+.meta-footer {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+}
+
+.meta-header {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.outer-wrap-footer {
+    margin-top: 48px;
+}
+
+.inner-wrap-footer {
+    #desinax-vgrid.grid(1100px);
+}
+
+.footer-column {
+    #desinax-vgrid.column(@columns / 3);
+}
+
+.footer-column p {
+    font-family: 'Mukta', sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.footer-column a {
+    color: #70a492;
+    text-decoration: none;
+}
+
+.footer-column a:hover {
+    color: #f47c23;
+    text-decoration: none;
+}
+
+.site-footer {
+    #desinax-vgrid.column(@columns);
+    text-align: center;
+}
+
+.site-footer p {
+    font-family: 'Mukta', sans-serif;
+    font-size: 18px;
+    line-height: 32px;
+}
+
+// @media screen {
+//     .region-flash {
+//         display: none;
+//     }
+// }
+
+@media screen and (max-width: 1150px) {
+    .footer-column {
+        #desinax-vgrid.column(@columns - 2);
+        #desinax-vgrid.push(1);
+    }
+}
+
+@media screen and (max-width: 817px) {
+    .region-sidebar-right.has-sidebar-left {
+        #desinax-vgrid.column(@columns - 4);
+    }
+
+    .region-header-col-2 {
+        display: none;
+    }
+
+    .region-header-col-3 {
+        display: grid;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .region-main.has-sidebar-right,
+    .region-main.has-sidebar-left,
+    .region-sidebar-right,
+    .region-sidebar-left {
+        #desinax-vgrid.column(@columns - 2);
+        // #desinax-vgrid.push(1);
+    }
+
+    .region-sidebar-left {
+        margin-bottom: 24px;
+    }
+
+    .region-sidebar-right {
+        margin-top: 24px;
+    }
+
+    .site-logo-text {
+        font-size: 48px;
+    }
+}

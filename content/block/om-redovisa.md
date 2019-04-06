@@ -1,3 +1,3 @@
-#### Redovisa på GitHub
+## Redovisa på GitHub
 
-Skriv något kort om ditt redovisa-repo och länka till [repot för me/redovisa på GitHub](XXX).
+Vi studenter lägger upp redovisningarna av kursmomenten på GitHub. Här är mitt eget [repo](https://github.com/ingolager/oophp) där.

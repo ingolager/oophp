@@ -15,7 +15,7 @@ return [
         "data" => [
             "baseTitle" => " | oophp",
             "bodyClass" => null,
-            "favicon" => "favicon.ico",
+            "favicon" => "ella.png",
             "htmlClass" => null,
             "lang" => "sv",
             "stylesheets" => [
