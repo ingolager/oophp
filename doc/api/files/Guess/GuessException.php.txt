@@ -1,0 +1,11 @@
+<?php
+
+namespace Inla18\Guess;
+
+/**
+ * Exception class for GameException.
+ */
+class GuessException extends \Exception
+{
+}
+
