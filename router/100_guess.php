@@ -9,7 +9,6 @@
  */
 $app->router->get("guess/init", function () use ($app) {
     $game = new Inla18\Guess\Guess();
-    $game->sessionDestroy();
     return $app->response->redirect("guess/play");
 });
 
@@ -70,6 +69,8 @@ $app->router->post("guess/play", function () use ($app) {
 
     $app->page->add("guess/play", $data);
     // $app->page->add("guess/debug");
+
+    // return $app->response->redirect("guess/play");
 
     return $app->page->render([
         "title" => $title,
