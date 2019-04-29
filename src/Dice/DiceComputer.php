@@ -5,13 +5,30 @@ namespace Inla18\Dice;
 include_once(__DIR__ . "/Dice.php");
 include_once(__DIR__ . "/DiceHand.php");
 
+/**
+ * File that controls the computers throws
+ */
+
 class DiceComputer extends DiceHand
 {
+    /**
+     * Private variables of DiceComputer class
+     * @var int $totalComp holds computers total points
+     * @var int $runTime holds number of throws
+     * @var int $throwOne hold sum of first throw
+     * @var int $throwTwo hold sum of second throw
+     * @var int $throwThree hold sum of third throw
+     */
     private $totalComp;
     private $runTime;
     private $throwOne;
     private $throwTwo;
     private $throwThree;
+
+    /**
+     * Constructor of class Dice Computer
+     * @param integer $runTime default number of throws
+     */
 
     public function __construct(int $runTime = 3)
     {
@@ -23,11 +40,21 @@ class DiceComputer extends DiceHand
         $this->throwThree = 0;
     }
 
+    /**
+     * Determines number of throws
+     * @return int number of throws
+     */
+
     public function compAmount()
     {
         $this->runTimes = rand(1, 3);
         return $this->runTimes;
     }
+
+    /**
+     * Plays when human locks in points
+     * @return array array with computers throw set
+     */
 
     public function computerPlay()
     {
@@ -58,6 +85,11 @@ class DiceComputer extends DiceHand
         }
     }
 
+    /**
+     * Computer plays when human throws 1.
+     * @return array array with computers throw set
+     */
+
     public function computerThrow()
     {
         if (in_array(1, parent::values())) {
@@ -65,6 +97,11 @@ class DiceComputer extends DiceHand
         }
         return [null];
     }
+
+    /**
+     * Calculates sum of computer set of throws
+     * @return int sum of throws
+     */
 
     public function compSumDice()
     {
@@ -87,7 +124,25 @@ class DiceComputer extends DiceHand
             + array_sum(explode(', ', $this->throwTwo))
             + array_sum(explode(', ', $this->throwThree));
         }
+        return 0;
     }
+
+    /**
+     * Sets computers throw set to 0 after throw.
+     * @return void set to 0.
+     */
+
+    public function compZero()
+    {
+        $this->throwOne = 0;
+        $this->throwTwo = 0;
+        $this->throwThree = 0;
+    }
+
+    /**
+     * Holding total points of comuper
+     * @return int adds new point to total points
+     */
 
     public function compTotal()
     {
@@ -95,10 +150,15 @@ class DiceComputer extends DiceHand
         return $this->totalComp;
     }
 
+    /**
+     * Message displayed at end of game.
+     * @return string end message
+     */
+
     public function endMessage()
     {
         if ($this->totalComp >= 100) {
-            return "Game over. Datorn vann din loser.";
+            return "Game over. Datorn vann!!";
         } elseif (parent::totalPoints() >= 100) {
             return "Game over. Du besegrade datorn!!";
         }

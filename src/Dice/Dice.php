@@ -32,14 +32,14 @@ class Dice
         $this->throws = $throws;
     }
 
+    /**
+     * Roll the dice
+     * @return int represents the side of the rolled dice.
+     */
+
     public function rollDice()
     {
         $this->sides = rand(1, 6);
         return $this->sides;
-    }
-
-    public function throw()
-    {
-        return $this->rollDice();
     }
 }

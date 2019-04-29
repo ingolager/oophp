@@ -74,13 +74,13 @@ $app->router->post("dice/play", function () use ($app) {
 });
 
 
-$app->router->post("dice/process", function () use ($app) {
-    $title = "Process";
-    $_SESSION["roll"] = $_POST["roll"] ?? null;
-
-    $_SESSION["savePoints"] = $_POST["savePoints"] ?? null;
-
-    $_SESSION["doInit"] = $_POST["doInit"] ?? null;
-
-    return $app->response->redirect("dice/play");
-});
+// $app->router->post("dice/process", function () use ($app) {
+//     $title = "Process";
+//     $_SESSION["roll"] = $_POST["roll"] ?? null;
+//
+//     $_SESSION["savePoints"] = $_POST["savePoints"] ?? null;
+//
+//     $_SESSION["doInit"] = $_POST["doInit"] ?? null;
+//
+//     return $app->response->redirect("dice/play");
+// });

@@ -1,5 +1,4 @@
 <?php
-
 namespace Anax\View;
 
 ?><h1>Upp till 100</h1>
@@ -26,7 +25,6 @@ namespace Anax\View;
             <p>Din kastsumma är <?= $play->sumDice() ?></p>
             <p>Du har <?= $play->partPoints() ?> poäng att låsa in.</p>
             <p>Du har totalt <?= $play->total ?> poäng.</p>
-            <p><?php var_dump($play->total) ?></p>
         </td>
 <?php endif;
 if ($roll) :
@@ -46,12 +44,12 @@ if ($roll) :
             endforeach; ?>
             <p>Datorns kastsumma är <?= $play->compSumDice() ?></p>
             <p>Datorn har totalt <?= $play->compTotal() ?> poäng.</p>
+            <p><?= $play->compZero() ?></p>
             <p>Datorn väntar på ditt kast.</p>
         </td>
         </tr>
     </table>
 <?php endif;
-
 if ($savePoints) : ?>
     <table>
         <tr>
@@ -61,9 +59,9 @@ if ($savePoints) : ?>
         <tr>
         <td>
             <p>Du låste in dina poäng. </p>
-            <p>Det är din tur att kasta.</p>
+            <p><?= $play->totalTrigger(); ?></p>
             <p>Du har totalt <?= $play->totalPoints($savePoints) ?> poäng.</p>
-
+            <p>Det är din tur att kasta.</p>
         </td>
 <?php endif;
 if ($savePoints) :
@@ -82,7 +80,7 @@ if ($savePoints) :
             endforeach; ?>
             <p>Datorns kast gav <?= $play->compSumDice() ?> poäng.</p>
             <p>Datorn har totalt <?= $play->compTotal() ?> poäng. </p>
-
+            <p><?= $play->compZero() ?></p>
         </td>
     </table>
 <?php endif;
