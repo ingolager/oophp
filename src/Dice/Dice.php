@@ -1,14 +1,11 @@
 <?php
-
 namespace Inla18\Dice;
 
 /**
  * File with class Dice.
  */
-
 include_once(__DIR__ . "/DiceHand.php");
 include_once(__DIR__ . "/DiceComputer.php");
-
 class Dice
 {
     /**
@@ -16,7 +13,6 @@ class Dice
      * @var int $tries    Number of throws.
      */
     private $sides;
-    private $throws;
 
     /**
     * Constructor to initiate the object with current game settings,
@@ -25,18 +21,14 @@ class Dice
     * @param int $sides The result
     * @param int $throws  Number of throws
     */
-
-    public function __construct(int $sides = 6, int $throws = 0)
+    public function __construct(int $sides = 6)
     {
         $this->sides = $sides;
-        $this->throws = $throws;
     }
-
     /**
      * Roll the dice
      * @return int represents the side of the rolled dice.
      */
-
     public function rollDice()
     {
         $this->sides = rand(1, 6);

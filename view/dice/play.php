@@ -60,7 +60,7 @@ if ($savePoints) : ?>
         <td>
             <p>Du låste in dina poäng. </p>
             <p><?= $play->totalTrigger(); ?></p>
-            <p>Du har totalt <?= $play->totalPoints($savePoints) ?> poäng.</p>
+            <p>Du har totalt <?= $play->totalPoints() ?> poäng.</p>
             <p>Det är din tur att kasta.</p>
         </td>
 <?php endif;

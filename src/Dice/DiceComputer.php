@@ -2,7 +2,6 @@
 
 namespace Inla18\Dice;
 
-include_once(__DIR__ . "/Dice.php");
 include_once(__DIR__ . "/DiceHand.php");
 
 /**
@@ -19,7 +18,7 @@ class DiceComputer extends DiceHand
      * @var int $throwTwo hold sum of second throw
      * @var int $throwThree hold sum of third throw
      */
-    private $totalComp;
+    public $totalComp;
     private $runTime;
     private $throwOne;
     private $throwTwo;
@@ -58,31 +57,34 @@ class DiceComputer extends DiceHand
 
     public function computerPlay()
     {
-        $this->runTime = self::compAmount();
-        $this->throwOne = implode(", ", parent::computerRoll());
-        $this->throwTwo = implode(", ", parent::computerRoll());
-        $this->throwThree = implode(", ", parent::computerRoll());
-        if ($this->runTime === 1) {
-            $res = [$this->throwOne];
-            return $res;
-        } elseif ($this->runTime === 2) {
-            if (strpos($this->throwOne, "1") !== false) {
+        if ($this->total < 100) {
+            $this->runTime = self::compAmount();
+            $this->throwOne = implode(", ", parent::computerRoll());
+            $this->throwTwo = implode(", ", parent::computerRoll());
+            $this->throwThree = implode(", ", parent::computerRoll());
+            if ($this->runTime === 1) {
                 $res = [$this->throwOne];
                 return $res;
-            }
-            $res = [$this->throwOne, $this->throwTwo];
-            return $res;
-        } else {
-            if (strpos($this->throwOne, "1") !== false) {
-                $res = [$this->throwOne];
-                return $res;
-            } elseif (strpos($this->throwTwo, "1") !== false) {
+            } elseif ($this->runTime === 2) {
+                if (strpos($this->throwOne, "1") !== false) {
+                    $res = [$this->throwOne];
+                    return $res;
+                }
                 $res = [$this->throwOne, $this->throwTwo];
                 return $res;
+            } else {
+                if (strpos($this->throwOne, "1") !== false) {
+                    $res = [$this->throwOne];
+                    return $res;
+                } elseif (strpos($this->throwTwo, "1") !== false) {
+                    $res = [$this->throwOne, $this->throwTwo];
+                    return $res;
+                }
+                $res = [$this->throwOne, $this->throwTwo, $this->throwThree];
+                return $res;
             }
-            $res = [$this->throwOne, $this->throwTwo, $this->throwThree];
-            return $res;
         }
+        return [0];
     }
 
     /**
@@ -159,7 +161,7 @@ class DiceComputer extends DiceHand
     {
         if ($this->totalComp >= 100) {
             return "Game over. Datorn vann!!";
-        } elseif (parent::totalPoints() >= 100) {
+        } elseif ($this->total >= 100) {
             return "Game over. Du besegrade datorn!!";
         }
         return "Människa vs maskin. Mycket spännande match!";

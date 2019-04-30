@@ -46,12 +46,7 @@ $app->router->post("dice/play", function () use ($app) {
         $_SESSION['play'] = new Inla18\Dice\DiceComputer();
     }
 
-    // if (!isset($_SESSION['comp'])) {
-    //     $_SESSION['comp'] = new Inla18\Dice\DiceComputer();
-    // }
-
     $play = $_SESSION["play"];
-    // $comp = $_SESSION["comp"];
     $play->roll();
 
     if ($doInit) {
@@ -62,7 +57,6 @@ $app->router->post("dice/play", function () use ($app) {
         "roll" => $roll,
         "play" => $play,
         "savePoints" => $savePoints,
-        // "comp" => $comp,
     ];
 
     $app->page->add("dice/play", $data);

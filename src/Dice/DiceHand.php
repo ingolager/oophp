@@ -14,16 +14,12 @@ class DiceHand
      * @var int $total Total sum of points
      * @var array $sum Holding the points during a players turn
      * @var int $trigger evaluates if total points will be added
-     * @var
-     * @var
-     * @var
      */
     private $dices;
     private $values;
     public $total;
     private $sum;
     private $trigger;
-
     /**
      * Constructor to initiate the dicehand with a number of dices.
      *
@@ -105,7 +101,7 @@ class DiceHand
 
     /**
      * evaluates if points will be added to $total
-     * @return int default 0, if 1 points will be added to $total
+     * @return int default 0, if 1, points will be added to $total
      */
 
     public function totalTrigger()
@@ -130,7 +126,6 @@ class DiceHand
      * Destroys all sesstion
      * @return void sets session to null.
      */
-
 
     public function sessionDestroy()
     {
