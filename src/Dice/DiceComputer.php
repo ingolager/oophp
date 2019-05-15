@@ -25,6 +25,7 @@ class DiceComputer extends DiceHand implements HistogramInterface
     public $throwOne;
     private $throwTwo;
     private $throwThree;
+    public $sumSerie;
 
     /**
      * Constructor of class Dice Computer
@@ -39,6 +40,7 @@ class DiceComputer extends DiceHand implements HistogramInterface
         $this->throwOne = 0;
         $this->throwTwo = 0;
         $this->throwThree = 0;
+        $this->sumSerie = [];
     }
 
     /**
@@ -52,43 +54,7 @@ class DiceComputer extends DiceHand implements HistogramInterface
         return $this->runTimes;
     }
 
-    /**
-     * Plays when human locks in points
-     * @return array array with computers throw set
-     */
 
-    // public function computerPlay()
-    // {
-    //     if ($this->total < 100) {
-    //         $this->runTime = self::compAmount();
-    //         $this->throwOne = implode(", ", parent::computerRoll());
-    //         $this->throwTwo = implode(", ", parent::computerRoll());
-    //         $this->throwThree = implode(", ", parent::computerRoll());
-    //         $comp = $play->computerPlay();
-    //         if ($this->runTime === 1) {
-    //             $this->series = [$this->throwOne];
-    //             return $this->series;
-    //         } elseif ($this->runTime === 2) {
-    //             if (strpos($this->throwOne, "1") !== false) {
-    //                 $this->series = [$this->throwOne];
-    //                 return $this->series;
-    //             }
-    //             $this->series = [$this->throwOne, $this->throwTwo];
-    //             return $this->series;
-    //         } else {
-    //             if (strpos($this->throwOne, "1") !== false) {
-    //                 $this->series = [$this->throwOne];
-    //                 return $this->series;
-    //             } elseif (strpos($this->throwTwo, "1") !== false) {
-    //                 $this->series = [$this->throwOne, $this->throwTwo];
-    //                 return $this->series;
-    //             }
-    //             $this->series = [$this->throwOne, $this->throwTwo, $this->throwThree];
-    //             return $this->series;
-    //         }
-    //     }
-    //     return [0];
-    // }
 
     public function zeroCompRoll()
     {
@@ -98,89 +64,68 @@ class DiceComputer extends DiceHand implements HistogramInterface
         return $this->series;
     }
 
-    // public function computerPlay()
-    // {
-    //     if ($this->total < 100) {
-    //         $this->runTime = self::compAmount();
-    //         $this->throwOne = parent::computerRoll();
-    //         $this->throwTwo = parent::computerRoll();
-    //         $this->throwThree = parent::computerRoll();
-    //         if ($this->runTime === 1) {
-    //             $this->serie = [$this->throwOne];
-    //             return $this->serie;
-    //         } elseif ($this->runTime === 2) {
-    //             if (in_array(1, $this->throwOne)) {
-    //                 $this->serie = [$this->throwOne];
-    //                 return $this->serie;
-    //             }
-    //             $this->serie = [$this->throwOne, $this->throwTwo];
-    //             return $this->serie;
-    //         } else {
-    //             if (in_array(1, $this->throwOne)) {
-    //                 $this->serie = [$this->throwOne];
-    //                 return $this->serie;
-    //             } elseif (in_array(1, $this->throwTwo)) {
-    //                 $this->serie = [$this->throwOne, $this->throwTwo];
-    //                 return $this->serie;
-    //             }
-    //             $this->serie = [$this->throwOne, $this->throwTwo, $this->throwThree];
-    //             return $this->serie;
-    //         }
-    //     }
-    //     return [0];
-    // }
+    /**
+     * Plays when human locks in points
+     * @return array array with computers throw set
+     */
 
     public function computerPlay()
     {
         if ($this->total < 100) {
-            $this->runTime = self::compAmount();
-            $this->throwOne = implode(", ", parent::computerRoll());
-            $this->throwTwo = implode(", ", parent::computerRoll());
-            $this->throwThree = implode(", ", parent::computerRoll());
-            if ($this->runTime === 1) {
-                $comp = [$this->throwOne];
-                $strrepl = str_replace(", ", "", $comp);
-                $tointreal = implode($strrepl);
-                $nowint = (int) $tointreal;
-                $this->series = array_map('intval', str_split($nowint));
-                return $this->series;
-            } elseif ($this->runTime === 2) {
-                if (strpos($this->throwOne, "1") !== false) {
-                    $comp = [$this->throwOne, $this->throwTwo];
-                    $strrepl = str_replace(", ", "", $comp);
-                    $tointreal = implode($strrepl);
-                    $nowint = (int) $tointreal;
-                    $this->series = array_map('intval', str_split($nowint));
-                    return $this->series;
-                }
-                $comp = [$this->throwOne, $this->throwTwo];
-                $strrepl = str_replace(", ", "", $comp);
-                $tointreal = implode($strrepl);
-                $nowint = (int) $tointreal;
-                $this->series = array_map('intval', str_split($nowint));
-                return $this->series;
+            if (count($this->addSerie, 1) === 0) {
+                return self::computerWild();
+            } elseif ($this->total - $this->totalComp > 30 || count($this->addSerie, 1) / count(array_filter($this->addSerie)) < 0.1) {
+                    return self::computerWild();
             } else {
-                if (strpos($this->throwOne, "1") !== false) {
+                $this->runTime = self::compAmount();
+                $this->throwOne = implode(", ", parent::computerRoll());
+                $this->throwTwo = implode(", ", parent::computerRoll());
+                $this->throwThree = implode(", ", parent::computerRoll());
+                if ($this->runTime === 1) {
                     $comp = [$this->throwOne];
                     $strrepl = str_replace(", ", "", $comp);
                     $tointreal = implode($strrepl);
                     $nowint = (int) $tointreal;
                     $this->series = array_map('intval', str_split($nowint));
                     return $this->series;
-                } elseif (strpos($this->throwTwo, "1") !== false) {
+                } elseif ($this->runTime === 2) {
+                    if (strpos($this->throwOne, "1") !== false) {
+                        $comp = [$this->throwOne];
+                        $strrepl = str_replace(", ", "", $comp);
+                        $tointreal = implode($strrepl);
+                        $nowint = (int) $tointreal;
+                        $this->series = array_map('intval', str_split($nowint));
+                        return $this->series;
+                    }
                     $comp = [$this->throwOne, $this->throwTwo];
                     $strrepl = str_replace(", ", "", $comp);
                     $tointreal = implode($strrepl);
                     $nowint = (int) $tointreal;
                     $this->series = array_map('intval', str_split($nowint));
                     return $this->series;
+                } else {
+                    if (strpos($this->throwOne, "1") !== false) {
+                        $comp = [$this->throwOne];
+                        $strrepl = str_replace(", ", "", $comp);
+                        $tointreal = implode($strrepl);
+                        $nowint = (int) $tointreal;
+                        $this->series = array_map('intval', str_split($nowint));
+                        return $this->series;
+                    } elseif (strpos($this->throwTwo, "1") !== false) {
+                        $comp = [$this->throwOne, $this->throwTwo];
+                        $strrepl = str_replace(", ", "", $comp);
+                        $tointreal = implode($strrepl);
+                        $nowint = (int) $tointreal;
+                        $this->series = array_map('intval', str_split($nowint));
+                        return $this->series;
+                    }
+                    $comp = [$this->throwOne, $this->throwTwo, $this->throwThree];
+                    $strrepl = str_replace(", ", "", $comp);
+                    $tointreal = implode($strrepl);
+                    $nowint = (int) $tointreal;
+                    $this->series = array_map('intval', str_split($nowint));
+                    return $this->series;
                 }
-                $comp = [$this->throwOne, $this->throwTwo, $this->throwThree];
-                $strrepl = str_replace(", ", "", $comp);
-                $tointreal = implode($strrepl);
-                $nowint = (int) $tointreal;
-                $this->series = array_map('intval', str_split($nowint));
-                return $this->series;
             }
         }
         $this->series = [];
@@ -191,17 +136,41 @@ class DiceComputer extends DiceHand implements HistogramInterface
      * @return array array with computers throw set
      */
 
-    // public function mergeSeries() {
-    //     $this->mergedArray = array_merge($this->serie, $this->series);
-    //     return $this->mergedArray;
-    // }
-
     public function computerThrow()
     {
         if (in_array(1, parent::values())) {
             return self::computerPlay();
         }
         return [null];
+    }
+
+
+    public function computerWild()
+    {
+        $this->throwOne = implode(", ", parent::computerRoll());
+        $this->throwTwo = implode(", ", parent::computerRoll());
+        $this->throwThree = implode(", ", parent::computerRoll());
+        if (strpos($this->throwOne, "1") !== false) {
+            $comp = [$this->throwOne];
+            $strrepl = str_replace(", ", "", $comp);
+            $tointreal = implode($strrepl);
+            $nowint = (int) $tointreal;
+            $this->series = array_map('intval', str_split($nowint));
+            return $this->series;
+        } elseif (strpos($this->throwTwo, "1") !== false) {
+            $comp = [$this->throwOne, $this->throwTwo];
+            $strrepl = str_replace(", ", "", $comp);
+            $tointreal = implode($strrepl);
+            $nowint = (int) $tointreal;
+            $this->series = array_map('intval', str_split($nowint));
+            return $this->series;
+        }
+        $comp = [$this->throwOne, $this->throwTwo, $this->throwThree];
+        $strrepl = str_replace(", ", "", $comp);
+        $tointreal = implode($strrepl);
+        $nowint = (int) $tointreal;
+        $this->series = array_map('intval', str_split($nowint));
+        return $this->series;
     }
 
     /**
@@ -233,31 +202,6 @@ class DiceComputer extends DiceHand implements HistogramInterface
         return 0;
     }
 
-
-
-    // public function compSumDice()
-    // {
-    //     if ($this->runTime === 1) {
-    //         if (in_array(1, $this->throwOne)) {
-    //             return 0;
-    //         }
-    //         return array_sum($this->throwOne);
-    //     } elseif ($this->runTime === 2) {
-    //         if (in_array(1, $this->throwOne) || in_array(1, $this->throwTwo)) {
-    //             return 0;
-    //         }
-    //         return array_sum($this->throwOne)
-    //             + array_sum($this->throwTwo);
-    //     } else {
-    //         if (in_array(1, $this->throwOne) || in_array(1, $this->throwTwo) || in_array(1, $this->throwThree)) {
-    //             return 0;
-    //         }
-    //         return array_sum($this->throwOne)
-    //         + array_sum($this->throwTwo)
-    //         + array_sum($this->throwThree);
-    //     }
-    //     return 0;
-    // }
 
     /**
      * Sets computers throw set to 0 after throw.

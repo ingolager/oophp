@@ -28,6 +28,7 @@ namespace Anax\View;
             <p>Din kastsumma är <?= $play->sumDice ?></p>
             <p>Du har <?= $play->partPoints(); ?> poäng att låsa in.</p>
             <p>Du har totalt <?= $play->total ?> poäng.</p>
+            <!-- <p><?php var_dump(count(array_filter($play->addSerie))); ?><p> -->
         </td>
 
     <td>
@@ -73,6 +74,7 @@ if ($savePoints) : ?>
             <p><?= $play->totalTrigger(); ?></p>
             <p>Det är din tur att kasta.</p>
             <p>Du har totalt <?= $play->totalPoints() ?> poäng.</p>
+            <!-- <p><?php var_dump(count(array_filter($play->addSerie))); ?><p> -->
         </td>
 <?php endif;
 if ($savePoints) :
