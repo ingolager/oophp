@@ -47,6 +47,9 @@ $app->router->post("dice/play", function () use ($app) {
     }
 
     $play = $_SESSION["play"];
+
+    
+
     $play->roll();
 
     if ($doInit) {

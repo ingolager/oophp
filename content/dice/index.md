@@ -1,3 +1,4 @@
+
 Upp till 100
 ========================
 
@@ -8,4 +9,4 @@ Du inleder en spelomgång med att kasta dina två tärningar. Så länge du inte
 </br></br>
 Datorn är din motspelare och spelar utifrån samma regler som du. Slumpen avgör om datorn gör ett, två eller tre kast.  Om någon av datorns tärningar blir en etta avbryts kastserien och det blir din tur.
 
-[Starta ett nytt spel!](dice/init)
+[Starta ett nytt spel!](dice1/init)

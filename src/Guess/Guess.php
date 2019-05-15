@@ -22,6 +22,7 @@ class Guess
      * @var int $tries    Number of tries a guess has been made.
      */
     public $tries;
+    public $number;
 
 
     /**
@@ -49,6 +50,11 @@ class Guess
         return $this->number;
     }
 
+    public function tries()
+    {
+        return $this->tries;
+    }
+
     /**
      * Make a guess, decrease remaining guesses and return a string stating
      * if the guess was correct, too low or to high or if no guesses remains.
@@ -67,40 +73,43 @@ class Guess
                 throw new GuessException("Försök igen med ett tal från 1 till 100!");
             } else {
                 if ($guess === $this->number) {
-                    $this->sessionDestroy();
-                    return 'Your guess ' . $guess . ' is <b>CORRECT.</br> START A NEW GAME!</b>';
+                    $res = 'Your guess ' . $guess . ' is <b>CORRECT.</br> START A NEW GAME!</b>';
+                    return $res;
                 } elseif ($guess < $this->number) {
                     $this->tries -= 1;
-                    return 'Your guess ' . $guess . ' is <b>TOO LOW</b>';
+                    $res = 'Your guess ' . $guess . ' is <b>TOO LOW</b>';
+                    return $res;
                 } else {
                     $this->tries -= 1;
-                    return 'Your guess ' . $guess . ' is <b>TOO HIGH</b>';
+                    $res = 'Your guess ' . $guess . ' is <b>TOO HIGH</b>';
+                    return $res;
                 }
             }
         }
-        return '<b>GAME OVER! YOU LOST!</b>';
+        $res = '<b>GAME OVER! YOU LOST!</b>';
+        return $res;
     }
 
     /**
      * Destroys game session.
      */
 
-    public function sessionDestroy()
-    {
-        $_SESSION = [];
-
-        if (ini_get("session.use_cookies")) {
-            $params = session_get_cookie_params();
-            setcookie(
-                session_name(),
-                '',
-                time() - 42000,
-                $params["path"],
-                $params["domain"],
-                $params["secure"],
-                $params["httponly"]
-            );
-        }
-        session_destroy();
-    }
+    // public function sessionDestroy()
+    // {
+    //     $_SESSION = [];
+    //
+    //     if (ini_get("session.use_cookies")) {
+    //         $params = session_get_cookie_params();
+    //         setcookie(
+    //             session_name(),
+    //             '',
+    //             time() - 42000,
+    //             $params["path"],
+    //             $params["domain"],
+    //             $params["secure"],
+    //             $params["httponly"]
+    //         );
+    //     }
+    //     session_destroy();
+    // }
 }
