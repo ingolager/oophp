@@ -157,33 +157,4 @@ class DiceHand
         $this->series[] = [$this->compValues[0], $this->compValues[1]];
         return [$this->compValues[0], $this->compValues[1]];
     }
-
-    // public function compValues()
-    // {
-    //     $this->series = [$this->compValues[0], $this->compValues[1]];
-    //     return $this->series;
-    // }
-
-    // /**
-    //  * Destroys all sesstion
-    //  * @return void sets session to null.
-    //  */
-
-    // public function sessionDestroy()
-    // {
-    //     $_SESSION = [];
-    //     if (ini_get("session.use_cookies")) {
-    //         $params = session_get_cookie_params();
-    //         setcookie(
-    //             session_name(),
-    //             '',
-    //             time() - 42000,
-    //             $params["path"],
-    //             $params["domain"],
-    //             $params["secure"],
-    //             $params["httponly"]
-    //         );
-    //     }
-    //     session_destroy();
-    // }
 }

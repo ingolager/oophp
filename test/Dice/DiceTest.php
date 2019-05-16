@@ -24,6 +24,15 @@ class DiceTest extends TestCase
         $this->assertIsInt($res);
     }
 
+    public function testCompDice()
+    {
+        $dice  = new Dice();
+        $this->assertInstanceOf("\Inla18\Dice\Dice", $dice);
+
+        $res = $dice->compDice();
+        $this->assertIsInt($res);
+    }
+
     /**
      * Tests if roll of dice returns void
      *

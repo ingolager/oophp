@@ -30,14 +30,6 @@ interface HistogramInterface
      */
     public function getHistogramAddedSerie();
 
-    // /**
-    //  * Get the added computer serie.
-    //  *
-    //  * @return array with the added serie.
-    //  */
-    // public function getHistogramAddedSeries();
-
-
 
     /**
      * Get min value for the histogram.
