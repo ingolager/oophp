@@ -75,13 +75,13 @@ class DiceHand
     * @return int as the sum of all dices.
     */
 
-   public function zeroValue()
-   {
-       $this->values[0] = 0;
-       $this->values[1] = 0;
-       $this->serie = [$this->values[0], $this->values[1]];
-       return $this->serie;
-   }
+    public function zeroValue()
+    {
+        $this->values[0] = 0;
+        $this->values[1] = 0;
+        $this->serie = [$this->values[0], $this->values[1]];
+        return $this->serie;
+    }
 
 
     /**

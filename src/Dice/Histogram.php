@@ -94,6 +94,5 @@ class Histogram
         $this->min   = $object->getHistogramMin();
         $this->max   = $object->getHistogramMax();
         $this->addSerie = $object->getHistogramAddedSerie();
-        // $this->addSerie = $object->getHistogramAddedSeries();
     }
 }

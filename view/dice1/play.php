@@ -1,8 +1,6 @@
 <?php
 namespace Anax\View;
 
-
-
 ?><h1>Upp till 100 - controller version!</h1>
 
 <form method="post">
@@ -28,35 +26,34 @@ namespace Anax\View;
             <p>Din kastsumma är <?= $play->sumDice ?></p>
             <p>Du har <?= $play->partPoints(); ?> poäng att låsa in.</p>
             <p>Du har totalt <?= $play->total ?> poäng.</p>
-            <!-- <p><?php var_dump(count(array_filter($play->addSerie))); ?><p> -->
+            <!-- <?php var_dump(count(array_keys($play->addSerie, 1)) / count(array_filter($play->addSerie))); ?>
+            <p><?php var_dump(count(array_keys($play->addSerie, 1))); ?><p>
+            <p><?php var_dump(count(array_filter($play->addSerie))); ?><p> -->
         </td>
-
     <td>
-<?php
-    if (in_array(1, $res)) :
-
-    $mapped = $play->series;
+        <?php
+        if (in_array(1, $res)) :
+            $mapped = $play->series;
             if ($mapped[0] !==null) {
-            foreach ($mapped as $value) : ?>
-                <p class="dice-sprite dice-<?= $value ?>"></p>
-            <?php endforeach; ?>
+                foreach ($mapped as $value) : ?>
+                    <p class="dice-sprite dice-<?= $value ?>"></p>
+                <?php endforeach; ?>
                 <p>Datorns kastsumma är <?= $play->compSumDice() ?></p>
-             <?php } else { ?>
+            <?php } else { ?>
                 <p class="minheight"></p>
-                <?php }
-            endif;
-            if (!in_array(1, $res)) : ?>
+            <?php }
+        endif;
+        if (!in_array(1, $res)) : ?>
                 <p class="minheight"></p>
                 <p>Datorn har inte slagit.</p>
-            <?php endif; ?>
-            <p>Datorn väntar på ditt kast.</p>
-            <p>Datorn har totalt <?= $play->compTotal(); ?> poäng.</p>
-            <p><?= $play->compZero() ?></p>
-        </td>
-
-        <td>
-            <pre><?= $histogram->getAsText() ?></pre>
-        </td>
+        <?php endif; ?>
+                <p>Datorn väntar på ditt kast.</p>
+                <p>Datorn har totalt <?= $play->compTotal(); ?> poäng.</p>
+                <p><?= $play->compZero() ?></p>
+            </td>
+            <td>
+                <pre><?php $histogram->getAsText() ?></pre>
+            </td>
         </tr>
     </table>
 <?php endif;
@@ -83,19 +80,19 @@ if ($savePoints) :
         <td>
             <?php
             if ($mapped[0] !==null) {
-            foreach ($mapped as $value) : ?>
+                foreach ($mapped as $value) : ?>
                 <p class="dice-sprite dice-<?= $value ?>"></p>
-            <?php endforeach;
-             } else { ?>
+                <?php endforeach;
+            } else { ?>
                 <p class="minheight"></p>
-                <?php } ?>
+            <?php } ?>
             <p>Datorns kaststumma är <?= $play->compSumDice() ?> poäng.</p>
             <p>Datorn väntar på ditt kast.</p>
             <p>Datorn har totalt <?= $play->compTotal() ?> poäng. </p>
             <p><?= $play->compZero() ?></p>
         </td>
         <td>
-            <pre><?= $histogram->getAsText() ?></pre>
+            <pre><?php $histogram->getAsText() ?></pre>
         </td>
     </tr>
     </table>

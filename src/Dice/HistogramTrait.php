@@ -19,8 +19,6 @@ trait HistogramTrait
     public $result = [];
     public $mergedArray = [];
 
-
-
     /**
      * Get the serie.
      *
@@ -36,11 +34,6 @@ trait HistogramTrait
         return $this->series;
     }
 
-    public function getMergedSeries()
-    {
-        return $this->mergedArray;
-    }
-
     /**
      * Add series together.
      *
@@ -52,25 +45,6 @@ trait HistogramTrait
         return $this->addSerie;
     }
 
-    // /**
-    //  * Add series together.
-    //  *
-    //  * @return array with the serie.
-    //  */
-    // public function getHistogramAddedSerie()
-    // {
-    //     $this->addSerie = array_merge($this->addSerie, $this->mergedArray);
-    //     return $this->addSerie;
-    // }
-
-    // public function getHistogramAddedSeries()
-    // {
-    //     $this->addSeries = array_merge($this->addSeries, $this->result);
-    //     $this->series = [];
-    //     return $this->addSeries;
-    // }
-
-
     /**
      * Get min value for the histogram.
      *
@@ -80,8 +54,6 @@ trait HistogramTrait
     {
         return 1;
     }
-
-
 
     /**
      * Get max value for the histogram.

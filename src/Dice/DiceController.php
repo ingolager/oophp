@@ -92,9 +92,18 @@ class DiceController implements AppInjectableInterface
     {
         $title = "Play the game (1)";
 
+        $play = $this->app->session->get('play');
+
+        // $histogram = new Histogram();
+        // $histogram->injectData($play);
+
+
         $data = [
             "roll" => $roll ?? null,
             "savePoints" => $savePoints ?? null,
+            // "text" => $text,
+            // "histogram" => $histogram,
+            // "play" => $play,
         ];
 
         $this->app->page->add("dice1/play", $data);
@@ -152,6 +161,8 @@ class DiceController implements AppInjectableInterface
         $histogram = new Histogram();
         $histogram->injectData($play);
 
+        // $text = $histogram->getAsText();
+
 
         // $dator = $play->computerThrow();
         // $strrepl = str_replace(", ", "", $dator);
@@ -166,6 +177,7 @@ class DiceController implements AppInjectableInterface
             "play" => $play,
             "savePoints" => $savePoints,
             "histogram" => $histogram,
+            // "text" => $text,
             // "res" => $res,
             // "sumDice" => $sumDice,
             // "mapped" => $mapped,
