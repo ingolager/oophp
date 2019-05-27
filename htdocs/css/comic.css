@@ -4853,7 +4853,7 @@ figcaption {
 }
 .my-navbar li {
   font-family: 'Luckiest Guy', sans-serif;
-  font-size: 20px;
+  font-size: 18px;
 }
 .my-navbar li a {
   color: #333;
@@ -5067,6 +5067,10 @@ article.article.blog p {
   font-size: 18px;
   text-transform: uppercase;
   color: #333;
+}
+img.thumb {
+  max-width: 100px;
+  max-height: 100px;
 }
 .meta-footer {
   font-family: 'Caveat', cursive;

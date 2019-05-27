@@ -94,16 +94,11 @@ class DiceController implements AppInjectableInterface
 
         $play = $this->app->session->get('play');
 
-        // $histogram = new Histogram();
-        // $histogram->injectData($play);
 
 
         $data = [
             "roll" => $roll ?? null,
             "savePoints" => $savePoints ?? null,
-            // "text" => $text,
-            // "histogram" => $histogram,
-            // "play" => $play,
         ];
 
         $this->app->page->add("dice1/play", $data);
@@ -141,47 +136,22 @@ class DiceController implements AppInjectableInterface
             $play->computerPlay();
         }
 
-        // if ($roll) {
-        //     $play->zeroCompRoll();
-        // }
-
-        // $res = $play->values();
         $sumDice = $play->sumDice();
 
         if ($doInit) {
             $this->app->session->destroy();
         }
 
-        // $dice = new DiceHistogram();
-        //
-        // for ($i = 0; $i < 2; $i++) {
-        //     $dice->roll();
-        // }
         //
         $histogram = new Histogram();
         $histogram->injectData($play);
 
-        // $text = $histogram->getAsText();
-
-
-        // $dator = $play->computerThrow();
-        // $strrepl = str_replace(", ", "", $dator);
-        // $tointreal = implode($strrepl);
-        // $nowint = (int) $tointreal;
-        // $mapped = array_map('intval', str_split($nowint));
-        //
-        // $compDice = $play->compSumDice();
 
         $data = [
             "roll" => $roll,
             "play" => $play,
             "savePoints" => $savePoints,
             "histogram" => $histogram,
-            // "text" => $text,
-            // "res" => $res,
-            // "sumDice" => $sumDice,
-            // "mapped" => $mapped,
-            // "compDice" => $compDice,
         ];
 
         $this->app->page->add("dice1/play", $data);

@@ -27,3 +27,5 @@ namespace Anax\View;
 <?php if ($doCheat) : ?>
     <p>CHEAT: Current number is <?= $number ?></p>
 <?php endif;
+
+var_dump($res);

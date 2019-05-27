@@ -89,5 +89,20 @@ return [
             "url" => "guess-game",
             "title" => "Spela gissa mitt nummer",
         ],
+        [
+            "text" => "Dice100",
+            "url" => "dice",
+            "title" => "Spela upp till 100",
+        ],
+        [
+            "text" => "Filmer",
+            "url" => "movie",
+            "title" => "Filmdatabas",
+        ],
+        [
+            "text" => "Filmer",
+            "url" => "movie",
+            "title" => "Filmdatabas",
+        ],
     ],
 ];
