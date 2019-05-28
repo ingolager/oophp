@@ -9,38 +9,37 @@ namespace Anax\View;
 
 <form method="post">
     <fieldset>
-    <legend>Edit</legend>
-    <input type="hidden" name="movieId" value="<?= $movie->id ?>"/>
+    <legend>Uppdatera</legend>
+    <input type="hidden" name="movieId" value="<?= esc($movie->id) ?>"/>
 
     <p>
         <label>Titel:<br>
-        <input type="text" name="movieTitle" value="<?= $movie->title ?>"/>
+        <input type="text" name="movieTitle" value="<?= esc($movie->title) ?>"/>
         </label>
     </p>
 
     <p>
         <label>År:<br>
-        <input type="number" name="movieYear" value="<?= $movie->year ?>"/>/>
+        <input type="number" name="movieYear" value="<?= esc($movie->year) ?>"/>
     </p>
 
     <p>
         <label>Regissör:<br>
-        <input type="text" name="movieDirector" value="<?= $movie->director ?>"/>/>
+        <input type="text" name="movieDirector" value="<?= esc($movie->director) ?>"/>
     </p>
 
     <p>
-        <label>Image:<br>
-        <input type="text" name="movieImage" value="<?= $movie->image ?>"/>/>
+        <label>Bild:<br>
+        <input type="text" name="movieImage" value="<?= esc($movie->image) ?>"/>
         </label>
     </p>
 
     <p>
-        <input type="submit" name="doSave" value="Save">
-        <input type="reset" value="Reset">
+        <input type="submit" name="doSave" value="Spara">
     </p>
-    <p>
-        <a href="?route=movie-select">Select movie</a> |
-        <a href="?">Show all</a>
+    <p class="movie-navbar">
+        <a href="<?= url("movie/select") ?>">Uppdatera en annan film</a>
+        <a href="<?= url("movie") ?>">Visa alla filmer</a>
     </p>
     </fieldset>
 </form>

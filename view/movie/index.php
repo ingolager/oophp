@@ -15,7 +15,6 @@ if (!$resultset) {
 
 ?><table>
     <tr class="first">
-        <th>Id</th>
         <th>Titel</th>
         <th>År</th>
         <th>Regissör</th>
@@ -25,7 +24,6 @@ if (!$resultset) {
 <?php $id = -1; foreach ($resultset as $row) :
     $id++; ?>
     <tr>
-        <td><?= $row->id ?></td>
         <td><?= $row->title ?></td>
         <td><?= $row->year ?></td>
         <td><?= $row->director ?></td>

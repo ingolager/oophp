@@ -7,17 +7,11 @@ namespace Anax\View;
  */
 ?>
 
-<navbar class="navbar">
-    <a href="?route=select">SELECT *</a> |
-    <br>
-    <a href="<?= url("movie") ?>">Show all movies</a> |
-    <!-- <a href="?route=reset">Reset database</a> | -->
-    <a href="<?= url("movie/search-title") ?>">Search title</a> |
-    <a href="<?= url("movie/search-year") ?>">Search year</a> |
-    <a href="<?= url("movie/select") ?>">Select</a> |
-    <!-- <a href="<?= url("movie/edit") ?>">Edit</a> | -->
-    <!-- <a href="?route=show-all-sort">Show all sortable</a> |
-    <a href="?route=show-all-paginate">Show all paginate</a> | -->
-</navbar>
+<h1>Svenska stumfilmer</h1>
 
-<h1>My Movie Database</h1>
+<navbar class="movie-navbar">
+    <a href="<?= url("movie") ?>">Visa alla filmer</a>
+    <a href="<?= url("movie/search-title") ?>">Sök filmtitel</a>
+    <a href="<?= url("movie/search-year") ?>">Sök filmår</a>
+    <a href="<?= url("movie/select") ?>">Uppdatera databasen</a>
+</navbar>

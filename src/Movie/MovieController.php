@@ -2,9 +2,9 @@
 
 namespace Inla18\Movie;
 
-
 use Anax\Commons\AppInjectableInterface;
 use Anax\Commons\AppInjectableTrait;
+
 /**
  * Create routes using $app programming style.
  */
@@ -17,8 +17,9 @@ class MovieController implements AppInjectableInterface
 {
     use AppInjectableTrait;
 
-    public function indexActionGet() : object {
-        $title = "Movie database | oophp";
+    public function indexActionGet() : object
+    {
+        $title = "Svenska stumfilmer";
 
         $sql = "SELECT * FROM movie;";
         $this->app->db->connect();
@@ -35,8 +36,9 @@ class MovieController implements AppInjectableInterface
         ]);
     }
 
-    public function searchYearActionGet() : object {
-        $title = "SELECT * WHERE year";
+    public function searchYearActionGet() : object
+    {
+        $title = "Sök årtal";
         $year1 = getGet("year1");
         $year2 = getGet("year2");
 
@@ -71,8 +73,9 @@ class MovieController implements AppInjectableInterface
         ]);
     }
 
-    public function searchTitleActionGet() : object {
-        $title = "SELECT * WHERE title";
+    public function searchTitleActionGet() : object
+    {
+        $title = "Sök titel";
 
         $searchTitle = getGet("searchTitle");
 
@@ -100,8 +103,9 @@ class MovieController implements AppInjectableInterface
         ]);
     }
 
-    public function selectAction() : object {
-        $title = "SELECT * WHERE id";
+    public function selectAction() : object
+    {
+        $title = "Uppdatera databasen";
 
         $this->app->db->connect();
 
@@ -120,8 +124,8 @@ class MovieController implements AppInjectableInterface
         ]);
     }
 
-    public function selectActionPost() : object {
-
+    public function selectActionPost() : object
+    {
         $request = $this->app->request;
         $movieId = $request->getPost("movieId");
         $doDelete = $request->getPost('doDelete', null);
@@ -133,30 +137,20 @@ class MovieController implements AppInjectableInterface
         if ($doDelete) {
             $sql = "DELETE FROM movie WHERE id = ?;";
             $this->app->db->execute($sql, [$movieId]);
-            return $this->app->response->redirect("movie/movie-edit?movieId=$movieId", $data);
+            return $this->app->response->redirect("movie/select");
         } elseif ($doAdd) {
             $sql = "INSERT INTO movie (title, year, director, image) VALUES (?, ?, ?, ?);";
-            $this->app->db->execute($sql, ["A title", 2017, "A director", "img/noimage.png"]);
+            $this->app->db->execute($sql, ["En titel", 1917, "En regissör", "img/noimage.png"]);
             $movieId = $this->app->db->lastInsertId();
-            return $this->app->response->redirect("movie/movie-edit?movieId=$movieId", $data);
+            return $this->app->response->redirect("movie/movie-edit?movieId=$movieId");
         } elseif ($doEdit && is_numeric($movieId)) {
-            return $this->app->response->redirect("movie/movie-edit?movieId=$movieId", $data);
+            return $this->app->response->redirect("movie/movie-edit?movieId=$movieId");
         }
-
-        // $data = [
-        //     "movieId" => $movieId,
-        //     "doDelete" => $doDelete,
-        //     "doAdd" => $doAdd,
-        //     "doEdit" => $doEdit
-        // ];
-        //
-        // $this->app->page->add("movie/navbar");
-        // $this->app->page->add("movie/movie-edit", $data);
-        //
-        // return $this->app->page->render();
     }
 
-    public function editMovieAction() : object {
+    public function movieEditAction() : object
+    {
+        $title = "Uppdatera databasen";
         $request = $this->app->request;
         $movieId    = $request->getGet("movieId");
         $movieTitle = $request->getPost("movieTitle");
@@ -167,20 +161,23 @@ class MovieController implements AppInjectableInterface
 
         $this->app->db->connect();
 
-        $sql = "SELECT * FROM movie WHERE id = ?;";
-        $movie = $this->app->db->executeFetchAll($sql, [$movieId]);
-        $movie = $movie[0];
-
         if ($doSave) {
             $sql = "UPDATE movie SET title = ?, year = ?, director = ?, image = ? WHERE id = ?;";
             $this->app->db->execute($sql, [$movieTitle, $movieYear, $movieDirector, $movieImage, $movieId]);
-            $this->app->response->redirect("movie/movie-edit?movieId=$movieId");
+            return $this->app->response->redirect("movie/movie-edit?movieId=$movieId");
         }
+
+        $sql = "SELECT * FROM movie WHERE id = ?;";
+        $movie = $this->app->db->executeFetchAll($sql, [$movieId]);
+        $movie = $movie[0];
 
         $data = [
             "movie" => $movie
         ];
 
         $this->app->page->add("movie/movie-edit", $data);
+        return $this->app->page->render([
+            "title" => $title,
+        ]);
     }
 }

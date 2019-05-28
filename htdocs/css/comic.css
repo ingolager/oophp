@@ -4727,6 +4727,7 @@ h2 {
 }
 table {
   width: 100%;
+  padding-top: 36px;
 }
 tr {
   text-align: left;
@@ -4735,6 +4736,9 @@ tr {
 td {
   text-align: left;
   width: 300px;
+}
+fieldset {
+  margin-top: 32px;
 }
 /**
  * Style a dice using UTF-8 characters.
@@ -4875,6 +4879,13 @@ figcaption {
   text-align: left;
   padding-left: 100px;
   border: 2px;
+}
+.movie-navbar a {
+  font-family: 'Luckiest Guy', sans-serif;
+  font-size: 16px;
+  color: #333;
+  text-decoration: none;
+  padding-right: 28px;
 }
 .region-flash {
   display: inline;

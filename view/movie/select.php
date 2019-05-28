@@ -12,12 +12,12 @@ namespace Anax\View;
 ?>
 <form method="post">
     <fieldset>
-    <legend>Select Movie</legend>
+    <legend>Filmväljare</legend>
 
     <p>
-        <label>Movie:<br>
+        <label><br>
         <select name="movieId">
-            <option value="">Select movie...</option>
+            <option value="">Välj film...</option>
             <?php foreach ($movies as $movie) : ?>
             <option value="<?= $movie->id ?>"><?= $movie->title ?></option>
             <?php endforeach; ?>
@@ -26,10 +26,10 @@ namespace Anax\View;
     </p>
 
     <p>
-        <input type="submit" name="doAdd" value="Add">
-        <input type="submit" name="doEdit" value="Edit">
-        <input type="submit" name="doDelete" value="Delete">
+        <input type="submit" name="doAdd" value="Ny film">
+        <input type="submit" name="doEdit" value="Redigera">
+        <input type="submit" name="doDelete" value="Ta bort">
     </p>
-    <p><a href="?">Show all</a></p>
+    <p class="movie-navbar"><a href="<?= url("movie") ?>">Visa alla filmer</a></p>
     </fieldset>
 </form>
