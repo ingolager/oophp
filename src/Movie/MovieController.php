@@ -100,7 +100,7 @@ class MovieController implements AppInjectableInterface
         ]);
     }
 
-    public function selectActionGet() : object {
+    public function selectAction() : object {
         $title = "SELECT * WHERE id";
 
         $this->app->db->connect();
@@ -120,141 +120,67 @@ class MovieController implements AppInjectableInterface
         ]);
     }
 
-    public function movieEditAction() : object {
-        $movieId = getPost("movieId");
+    public function selectActionPost() : object {
 
+        $request = $this->app->request;
+        $movieId = $request->getPost("movieId");
+        $doDelete = $request->getPost('doDelete', null);
+        $doAdd = $request->getPost('doAdd', null);
+        $doEdit = $request->getPost('doEdit', null);
 
-        if (getPost("doDelete")) {
+        $this->app->db->connect();
+
+        if ($doDelete) {
             $sql = "DELETE FROM movie WHERE id = ?;";
             $this->app->db->execute($sql, [$movieId]);
-            header("Location: ?route=movie-select");
-            exit;
-        } elseif (getPost("doAdd")) {
-            $this->app->db->connect();
-            $sql = "INSERT INTO movie (title, year, image) VALUES (?, ?, ?);";
-            $this->app->db->execute($sql, ["A title", 2017, "img/noimage.png"]);
+            return $this->app->response->redirect("movie/movie-edit?movieId=$movieId", $data);
+        } elseif ($doAdd) {
+            $sql = "INSERT INTO movie (title, year, director, image) VALUES (?, ?, ?, ?);";
+            $this->app->db->execute($sql, ["A title", 2017, "A director", "img/noimage.png"]);
             $movieId = $this->app->db->lastInsertId();
+            return $this->app->response->redirect("movie/movie-edit?movieId=$movieId", $data);
+        } elseif ($doEdit && is_numeric($movieId)) {
+            return $this->app->response->redirect("movie/movie-edit?movieId=$movieId", $data);
+        }
+
+        // $data = [
+        //     "movieId" => $movieId,
+        //     "doDelete" => $doDelete,
+        //     "doAdd" => $doAdd,
+        //     "doEdit" => $doEdit
+        // ];
+        //
+        // $this->app->page->add("movie/navbar");
+        // $this->app->page->add("movie/movie-edit", $data);
+        //
+        // return $this->app->page->render();
+    }
+
+    public function editMovieAction() : object {
+        $request = $this->app->request;
+        $movieId    = $request->getGet("movieId");
+        $movieTitle = $request->getPost("movieTitle");
+        $movieYear  = $request->getPost("movieYear");
+        $movieDirector = $request->getPost("movieDirector");
+        $movieImage = $request->getPost("movieImage");
+        $doSave = $request->getPost("doSave");
+
+        $this->app->db->connect();
+
+        $sql = "SELECT * FROM movie WHERE id = ?;";
+        $movie = $this->app->db->executeFetchAll($sql, [$movieId]);
+        $movie = $movie[0];
+
+        if ($doSave) {
+            $sql = "UPDATE movie SET title = ?, year = ?, director = ?, image = ? WHERE id = ?;";
+            $this->app->db->execute($sql, [$movieTitle, $movieYear, $movieDirector, $movieImage, $movieId]);
             $this->app->response->redirect("movie/movie-edit?movieId=$movieId");
-        } elseif (getPost("doEdit") && is_numeric($movieId)) {
-            header("Location: movie-edit&movieId=$movieId");
-            exit;
         }
 
         $data = [
-            "movies" => $movies
+            "movie" => $movie
         ];
 
-        $this->app->page->add("movie/navbar");
         $this->app->page->add("movie/movie-edit", $data);
-        return $this->app->page->render([
-            "title" => $title,
-        ]);
     }
 }
-
-//     public function selectActionPost() : object {
-//         $title = "SELECT * WHERE id";
-//         $movieId = getPost("movieId");
-//
-//         $this->app->db->connect();
-//
-//         $sql = "SELECT * FROM movie WHERE id = ?;";
-//         $movie = $this->app->db->executeFetchAll($sql);
-//         $movie = $movie[0];
-//
-//         $data = [
-//             "movie" => $movie
-//         ];
-//
-//         if (getPost("doDelete")) {
-//             $sql = "DELETE FROM movie WHERE id = ?;";
-//             $this->app->db->execute($sql, [$movieId]);
-//             header("Location: ?route=movie-select");
-//             exit;
-//         } elseif (getPost("doAdd")) {
-//             $sql = "INSERT INTO movie (title, year, director, image) VALUES (?, ?, ?, ?);";
-//             $this->app->db->execute($sql, ["A title", 2017, "A director", "img/noimage.png"]);
-//             $movieId = $this->app->db->lastInsertId();
-//             $this->app->page->add("movie/edit&movieId=$movieId");
-//             header("Location: ?route=movie-select");
-//             exit;
-//         } elseif (getPost("doEdit") && is_numeric($movieId)) {
-//             // header("Location: ?route=edit&movieId=$movieId");
-//             $this->app->page->add("movie/navbar");
-//             $this->app->page->add("movie/movie-edit");
-//             // $this->app->header("Location: ?route=movie/movie-edit");
-//             return $this->app->page->render([
-//                 "title" => $title,
-//             ]);
-//             exit;
-//         }
-//
-//
-//         $this->app->page->add("movie/navbar");
-//         $this->app->page->add("movie/select");
-//
-//
-// //     public function editActionGet() : object {
-// //         $title = "UPDATE movie";
-// //         //
-// //         $this->app->db->connect();
-// //         //
-// //         $sql = "SELECT * FROM movie WHERE id = ?;";
-// //         $movie = $this->app->db->executeFetchAll($sql, [$movieId]);
-// //         $movie = $movie[0];
-// //
-// //         $data = [
-// //             "movie" => $movie
-// //         ];
-// //
-//         // $this->app->page->add("movie/navbar");
-//         // $this->app->page->add("movie/edit&movieId=$movieId", $data);
-// //
-//         return $this->app->page->render([
-//             "title" => $title,
-//         ]);
-//     }
-// //
-// //     public function editActionPost() : object {
-// //         $title = "UPDATE movie";
-// //
-// //         $request = $this->app->request;
-// //
-// //         $movieId    = $request->getPost("movieId") ?: getGet("movieId");
-// //         $movieTitle = $request->getPost("movieTitle");
-// //         $movieYear  = $request->getPost("movieYear");
-// //         $movieDirector  = $request->getPost("movieDirector");
-// //         $movieImage = $request->getPost("movieImage");
-// //         $doSave = $request->getPost("doSave");
-// //         $movie = $request->getPost("movie");
-// //
-// //         $this->app->db->connect();
-// //
-// //         // $sql = "SELECT * FROM movie WHERE id = ?;";
-// //         // $movie = $this->app->db->executeFetchAll($sql, [$movieId]);
-// //         // $movie = $movie[0];
-// //         //
-// //         // $data = [
-// //         //     "movie" => $movie
-// //         // ];
-// //
-// //         if ($doSave) {
-// //             $sql = "UPDATE movie SET title = ?, year = ?, director = ?, image = ? WHERE id = ?;";
-// //             $this->app->db->execute($sql, [$movieTitle, $movieYear, $movieDirector, $movieImage, $movieId]);
-// //             header("Location: ?route=movie-edit&movieId=$movieId");
-// //             exit;
-// //         }
-// //
-// //         $sql = "SELECT * FROM movie WHERE id = ?;";
-// //         $movie = $db->executeFetchAll($sql, [$movieId]);
-// //         $movie = $movie[0];
-// //
-// //         $this->app->page->add("movie/navbar");
-// //         $this->app->page->add("movie/edit");
-// //
-// //         return $this->app->page->render([
-// //             "title" => $title,
-// //         ]);
-// //         // return $this->app->response->redirect("movie");
-// //     }
-// }

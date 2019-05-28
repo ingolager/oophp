@@ -15,7 +15,7 @@ namespace Anax\View;
     <a href="<?= url("movie/search-title") ?>">Search title</a> |
     <a href="<?= url("movie/search-year") ?>">Search year</a> |
     <a href="<?= url("movie/select") ?>">Select</a> |
-    <a href="<?= url("movie/edit") ?>">Edit</a> |
+    <!-- <a href="<?= url("movie/edit") ?>">Edit</a> | -->
     <!-- <a href="?route=show-all-sort">Show all sortable</a> |
     <a href="?route=show-all-paginate">Show all paginate</a> | -->
 </navbar>

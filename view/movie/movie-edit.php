@@ -44,6 +44,3 @@ namespace Anax\View;
     </p>
     </fieldset>
 </form>
-
-<?php var_dump([$movieTitle, $movieYear, $movieDirector, $movieImage, $movieId]);
-var_dump($movie);
