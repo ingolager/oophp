@@ -1,6 +1,6 @@
 <?php
 /**
- * Dice controller.
+ * Movie controller.
  */
 return [
     "routes" => [
