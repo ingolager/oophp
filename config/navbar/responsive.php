@@ -100,9 +100,14 @@ return [
             "title" => "Filmdatabas",
         ],
         [
-            "text" => "Filmer",
-            "url" => "movie",
-            "title" => "Filmdatabas",
+            "text" => "Textfilter",
+            "url" => "mytextfilter",
+            "title" => "Textfilter",
+        ],
+        [
+            "text" => "Textfilter",
+            "url" => "mytextfilter",
+            "title" => "Textfilter",
         ],
     ],
 ];

@@ -1,6 +1,6 @@
 Filtrera texten
 ================
-Här kan man filtrera texten.
+Här visas några exempel på textfilter.
 
 [Bbcode!](MyTextFilter/bbcode)
 

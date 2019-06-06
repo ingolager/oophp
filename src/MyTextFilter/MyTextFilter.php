@@ -32,10 +32,12 @@ class MyTextFilter
      *
      * @return string with the formatted text.
      */
-    public function parse($text)
+    public function parse($text, $filter)
     {
-        foreach ($this->filters as $key => $value) {
-            $text = $this->{$value}($text);
+        foreach ($filter as $key => $value) {
+            if (in_array($value, $this->filters)) {
+                $text = $this->{$value}($text);
+            }
         }
         return $text;
     }

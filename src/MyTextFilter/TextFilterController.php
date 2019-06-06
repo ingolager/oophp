@@ -76,28 +76,12 @@ class TextFilterController implements AppInjectableInterface
          return $this->app->page->render();
      }
 
-     public function nl2brAction() : object
-     {
-         $mytextfilter = new MyTextFilter();
-         $text = file_get_contents(__DIR__ . "/../../content/nl2br.txt");
-         $html = $mytextfilter->nl2br($text);
-
-         $data = [
-             "text" => $text,
-             "html" => $html
-         ];
-
-         $this->app->page->add("mytextfilter/nl2br", $data);
-
-         return $this->app->page->render();
-     }
-
      public function parsebbcAction() : object
      {
         $mytextfilter = new MyTextFilter();
         $text = file_get_contents(__DIR__ . "/../../content/bbcode.txt");
 
-        $html = $mytextfilter->parse($text);
+        $html = $mytextfilter->parse($text, ["bbcode2html", "makeClickable", "markdown", "nl2br"]);
 
         $data = [
             "text" => $text,
@@ -114,7 +98,7 @@ class TextFilterController implements AppInjectableInterface
         $mytextfilter = new MyTextFilter();
         $text = file_get_contents(__DIR__ . "/../../content/clickable.txt");
 
-        $html = $mytextfilter->parse($text);
+        $html = $mytextfilter->parse($text, ["bbcode2html", "makeClickable"]);
 
         $data = [
             "text" => $text,
@@ -131,7 +115,7 @@ class TextFilterController implements AppInjectableInterface
         $mytextfilter = new MyTextFilter();
         $text = file_get_contents(__DIR__ . "/../../content/sample.md");
 
-        $html = $mytextfilter->parse($text);
+        $html = $mytextfilter->parse($text, ["bbcode2html", "makeClickable", "markdown"]);
 
         $data = [
             "text" => $text,
@@ -139,23 +123,6 @@ class TextFilterController implements AppInjectableInterface
         ];
 
          $this->app->page->add("mytextfilter/parsemark", $data);
-
-         return $this->app->page->render();
-     }
-
-     public function parsenl2brAction() : object
-     {
-        $mytextfilter = new MyTextFilter();
-        $text = file_get_contents(__DIR__ . "/../../content/nl2br.txt");
-
-        $html = $mytextfilter->parse($text);
-
-        $data = [
-            "text" => $text,
-            "html" => $html
-        ];
-
-         $this->app->page->add("mytextfilter/parsenl2br", $data);
 
          return $this->app->page->render();
      }
