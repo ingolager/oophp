@@ -15,4 +15,4 @@ namespace Anax\View;
 <pre><?= htmlentities($html) ?></pre>
 
 <h2>Text displayed as HTML</h2>
-<?= $html ?>
+<?= $html; ?>

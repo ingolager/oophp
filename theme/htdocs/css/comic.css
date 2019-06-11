@@ -4725,17 +4725,25 @@ h2 {
   text-transform: uppercase;
   line-height: 1.15em;
 }
+h2 a {
+  color: inherit;
+}
 table {
   width: 100%;
   padding-top: 36px;
+  border: 0;
 }
 tr {
   text-align: left;
-  width: 300px;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 td {
   text-align: left;
-  width: 300px;
+}
+.time {
+  font-size: 12px;
 }
 fieldset {
   margin-top: 32px;
@@ -4857,7 +4865,7 @@ figcaption {
 }
 .my-navbar li {
   font-family: 'Luckiest Guy', sans-serif;
-  font-size: 16px;
+  font-size: 15px;
 }
 .my-navbar li a {
   color: #333;

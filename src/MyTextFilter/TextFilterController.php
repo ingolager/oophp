@@ -81,7 +81,7 @@ class TextFilterController implements AppInjectableInterface
         $mytextfilter = new MyTextFilter();
         $text = file_get_contents(__DIR__ . "/../../content/bbcode.txt");
 
-        $html = $mytextfilter->parse($text, ["bbcode2html", "makeClickable", "markdown", "nl2br"]);
+        $html = $mytextfilter->parse($text, ["bbcode"]);
 
         $data = [
             "text" => $text,
@@ -98,7 +98,7 @@ class TextFilterController implements AppInjectableInterface
         $mytextfilter = new MyTextFilter();
         $text = file_get_contents(__DIR__ . "/../../content/clickable.txt");
 
-        $html = $mytextfilter->parse($text, ["bbcode2html", "makeClickable"]);
+        $html = $mytextfilter->parse($text, ["link"]);
 
         $data = [
             "text" => $text,
@@ -115,7 +115,7 @@ class TextFilterController implements AppInjectableInterface
         $mytextfilter = new MyTextFilter();
         $text = file_get_contents(__DIR__ . "/../../content/sample.md");
 
-        $html = $mytextfilter->parse($text, ["bbcode2html", "makeClickable", "markdown"]);
+        $html = $mytextfilter->parse($text, ["markdown"]);
 
         $data = [
             "text" => $text,

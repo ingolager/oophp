@@ -1,6 +1,6 @@
 <?php
 
-namespace Inla18\MyTextFilter;
+namespace Inla18\Cont;
 use Michelf\MarkdownExtra;
 
 /**
@@ -9,7 +9,7 @@ use Michelf\MarkdownExtra;
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  * @SuppressWarnings(PHPMD.UnusedPrivateField)
  */
-class MyTextFilter
+class NewTextFilter
 {
     /**
      * @var array $filters Supported filters with method names of
