@@ -1,6 +1,6 @@
 /.bin
 /build
+/config/database.php
 /vendor
 memory::
 composer.lock
-/config/database.php

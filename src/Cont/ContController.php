@@ -126,16 +126,14 @@ class ContController implements AppInjectableInterface
                 $params["contentSlug"] = slugify($params["contentTitle"]);
             }
 
-            if (!$params["contentPath"]) {
-                $params["contentPath"] = null;
-            }
-
-            $slug = $request->getPost("contentSlug");
-
             if (in_array($params["contentSlug"], $check)) {
                 if ($params["contentSlug"] !== $currString) {
                     $params["contentSlug"] = $params["contentSlug"] . rand();
                 }
+            }
+
+            if (!$params["contentPath"]) {
+                $params["contentPath"] = null;
             }
 
             $sql = "UPDATE content SET title=?, path=?, slug=?, data=?, type=?, filter=?, published=? WHERE id = ?;";
