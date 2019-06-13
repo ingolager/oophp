@@ -1,6 +1,7 @@
 <?php
 
 namespace Inla18\MyTextFilter;
+
 use Michelf\MarkdownExtra;
 
 /**
@@ -36,7 +37,7 @@ class MyTextFilter
     {
         $usefilter = [];
         foreach ($this->filters as $key => $value) {
-            if(in_array($key, $filter)) {
+            if (in_array($key, $filter)) {
                 array_push($usefilter, $value);
             }
         }
@@ -92,7 +93,7 @@ class MyTextFilter
         return preg_replace_callback(
             '#\b(?<![href|src]=[\'"])https?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#',
             function ($matches) {
-                return "<a href=\'{$matches[0]}\'>{$matches[0]}</a>";
+                return "<a href=\"{$matches[0]}\">{$matches[0]}</a>";
             },
             $text
         );

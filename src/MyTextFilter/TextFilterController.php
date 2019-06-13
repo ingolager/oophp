@@ -28,56 +28,56 @@ class TextFilterController implements AppInjectableInterface
      use AppInjectableTrait;
 
 
-     public function bbcodeAction() : object
-     {
-         $mytextfilter = new MyTextFilter();
-         $text = file_get_contents(__DIR__ . "/../../content/bbcode.txt");
-         $html = $mytextfilter->bbcode2html($text);
+    public function bbcodeAction() : object
+    {
+        $mytextfilter = new MyTextFilter();
+        $text = file_get_contents(__DIR__ . "/../../content/bbcode.txt");
+        $html = $mytextfilter->bbcode2html($text);
 
-         $data = [
-             "text" => $text,
-             "html" => $html
-         ];
+        $data = [
+            "text" => $text,
+            "html" => $html
+        ];
 
-         $this->app->page->add("mytextfilter/bbcode", $data);
+        $this->app->page->add("mytextfilter/bbcode", $data);
 
-         return $this->app->page->render();
-     }
+        return $this->app->page->render();
+    }
 
-     public function clickableAction() : object
-     {
-         $mytextfilter = new MyTextFilter();
-         $text = file_get_contents(__DIR__ . "/../../content/clickable.txt");
-         $html = $mytextfilter->makeClickable($text);
+    public function clickableAction() : object
+    {
+        $mytextfilter = new MyTextFilter();
+        $text = file_get_contents(__DIR__ . "/../../content/clickable.txt");
+        $html = $mytextfilter->makeClickable($text);
 
-         $data = [
-             "text" => $text,
-             "html" => $html
-         ];
+        $data = [
+            "text" => $text,
+            "html" => $html
+        ];
 
-         $this->app->page->add("mytextfilter/clickable", $data);
+        $this->app->page->add("mytextfilter/clickable", $data);
 
-         return $this->app->page->render();
-     }
+        return $this->app->page->render();
+    }
 
-     public function markdownAction() : object
-     {
-         $mytextfilter = new MyTextFilter();
-         $text = file_get_contents(__DIR__ . "/../../content/sample.md");
-         $html = $mytextfilter->markdown($text);
+    public function markdownAction() : object
+    {
+        $mytextfilter = new MyTextFilter();
+        $text = file_get_contents(__DIR__ . "/../../content/sample.md");
+        $html = $mytextfilter->markdown($text);
 
-         $data = [
-             "text" => $text,
-             "html" => $html
-         ];
+        $data = [
+            "text" => $text,
+            "html" => $html
+        ];
 
-         $this->app->page->add("mytextfilter/markdown", $data);
+        $this->app->page->add("mytextfilter/markdown", $data);
 
-         return $this->app->page->render();
-     }
+        return $this->app->page->render();
+    }
 
-     public function parsebbcAction() : object
-     {
+    public function parsebbcAction() : object
+    {
         $mytextfilter = new MyTextFilter();
         $text = file_get_contents(__DIR__ . "/../../content/bbcode.txt");
 
@@ -88,13 +88,13 @@ class TextFilterController implements AppInjectableInterface
             "html" => $html
         ];
 
-         $this->app->page->add("mytextfilter/parsebbc", $data);
+        $this->app->page->add("mytextfilter/parsebbc", $data);
 
-         return $this->app->page->render();
-     }
+        return $this->app->page->render();
+    }
 
-     public function parseclickAction() : object
-     {
+    public function parseclickAction() : object
+    {
         $mytextfilter = new MyTextFilter();
         $text = file_get_contents(__DIR__ . "/../../content/clickable.txt");
 
@@ -105,13 +105,13 @@ class TextFilterController implements AppInjectableInterface
             "html" => $html
         ];
 
-         $this->app->page->add("mytextfilter/parseclick", $data);
+        $this->app->page->add("mytextfilter/parseclick", $data);
 
-         return $this->app->page->render();
-     }
+        return $this->app->page->render();
+    }
 
-     public function parsemarkAction() : object
-     {
+    public function parsemarkAction() : object
+    {
         $mytextfilter = new MyTextFilter();
         $text = file_get_contents(__DIR__ . "/../../content/sample.md");
 
@@ -122,9 +122,8 @@ class TextFilterController implements AppInjectableInterface
             "html" => $html
         ];
 
-         $this->app->page->add("mytextfilter/parsemark", $data);
+        $this->app->page->add("mytextfilter/parsemark", $data);
 
-         return $this->app->page->render();
-     }
-
+        return $this->app->page->render();
+    }
 }

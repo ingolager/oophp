@@ -55,4 +55,3 @@ namespace Anax\View;
     </p>
 </fieldset>
 </form>
-<?= var_dump($currString);

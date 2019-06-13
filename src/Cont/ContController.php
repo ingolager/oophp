@@ -213,7 +213,6 @@ class ContController implements AppInjectableInterface
     public function pagesAction() : object
     {
         $title = "View pages";
-        $request = $this->app->request;
         $this->app->db->connect();
 
         $sql = <<<EOD
@@ -245,7 +244,6 @@ EOD;
     public function pageAction($slug) : object
     {
         $this->app->db->connect();
-        $route = getGet("id", "");
 
             $sql = <<<EOD
 SELECT
@@ -273,12 +271,14 @@ WHERE
 ;
 EOD;
 
-        $newTextFilter = new newTextFilter();
+        $newTextFilter = new NewTextFilter();
 
         $content = $this->app->db->executeFetch($sql, [$slug, "page"]);
 
-        $filterObject = $this->app->db->executeFetch($sqlFilter, [$slug, "page"]);
-        $filter = json_decode(json_encode($filterObject), true);
+        $filter = $this->app->db->executeFetch($sqlFilter, [$slug, "page"]);
+        $filter = json_decode(json_encode($filter), true);
+        $filter = implode(",", $filter);
+        $filter = explode(",", $filter);
 
         if (!$content) {
             $this->app->response->redirect("HTTP/1.0 404 Not Found");
@@ -310,6 +310,8 @@ EOD;
     {
         $title = "Min blogg";
         $this->app->db->connect();
+        $request = $this->app->request;
+        $contentId = $request->getGet("id");
 
         $sql = <<<EOD
     SELECT
@@ -318,6 +320,7 @@ EOD;
         DATE_FORMAT(COALESCE(updated, published), '%Y-%m-%d') AS published
     FROM content
     WHERE type=?
+    AND (deleted IS NULL OR deleted > NOW())
     ORDER BY published DESC
     ;
 EOD;
@@ -331,15 +334,16 @@ EOD;
     ;
 EOD;
 
-        $newTextFilter = new newTextFilter();
+        $newTextFilter = new NewTextFilter();
 
         $resultset = $this->app->db->executeFetchAll($sql, ["post"]);
 
-        $filterObject = $this->app->db->executeFetch($sqlFilter, ["post"]);
+        $filterObject = $this->app->db->executeFetchAll($sqlFilter, ["post"]);
         $filter = json_decode(json_encode($filterObject), true);
 
         foreach ($resultset as $key => $value) {
-            $value->data = $newTextFilter->parse($value->data, $filter);
+            $value->filter = explode(",", $value->filter);
+            $value->data = $newTextFilter->parse($value->data, $value->filter);
         }
 
         $data = [
@@ -350,7 +354,7 @@ EOD;
         $this->app->page->add("cont/blogg", $data);
 
         return $this->app->page->render([
-            "title" => $title
+            "title" => $title,
         ]);
     }
 
@@ -386,12 +390,14 @@ ORDER BY published DESC
 ;
 EOD;
 
-        $newTextFilter = new newTextFilter();
+        $newTextFilter = new NewTextFilter();
 
         $content = $this->app->db->executeFetch($sql, [$slug, "post"]);
 
-        $filterObject = $this->app->db->executeFetch($sqlFilter, [$slug, "post"]);
-        $filter = json_decode(json_encode($filterObject), true);
+        $filter = $this->app->db->executeFetch($sqlFilter, [$slug, "post"]);
+        $filter = json_decode(json_encode($filter), true);
+        $filter = implode(",", $filter);
+        $filter = explode(",", $filter);
 
         if (!$content) {
             $this->app->response->redirect("HTTP/1.0 404 Not Found");
@@ -407,7 +413,7 @@ EOD;
         $content->data = $newTextFilter->parse($content->data, $filter);
 
         $data = [
-            "content" => $content,
+            "content" => $content
         ];
 
         $title = $content->title;

@@ -2,7 +2,6 @@
 
 namespace Anax\View;
 
-
 ?>
 <title>Show off Clickable</title>
 

@@ -14,7 +14,6 @@ if (!$resultset) {
 <article>
 
 <?php foreach ($resultset as $row) : ?>
-
 <section>
     <header>
         <h2><a href="<?= url("cont/blog/$row->slug") ?>"><?= esc($row->title) ?></a></h2>
@@ -23,5 +22,4 @@ if (!$resultset) {
     <p><?= $row->data ?></p>
 <?php endforeach; ?>
 </section>
-
 </article>

@@ -24,21 +24,21 @@ function getGet($key, $default = null)
  *
  * @return mixed value from POST or the default value
  */
- function getPost($key, $default = null)
- {
-     if (is_array($key)) {
-         // $key = array_flip($key);
-         // return array_replace($key, array_intersect_key($_POST, $key));
-         foreach ($key as $val) {
-             $post[$val] = getPost($val);
-         }
-         return $post;
-     }
+function getPost($key, $default = null)
+{
+    if (is_array($key)) {
+        // $key = array_flip($key);
+        // return array_replace($key, array_intersect_key($_POST, $key));
+        foreach ($key as $val) {
+            $post[$val] = getPost($val);
+        }
+        return $post;
+    }
 
-     return isset($_POST[$key])
-         ? $_POST[$key]
-         : $default;
- }
+    return isset($_POST[$key])
+        ? $_POST[$key]
+        : $default;
+}
 
 
 
